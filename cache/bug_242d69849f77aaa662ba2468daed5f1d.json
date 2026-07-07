@@ -1,0 +1,10 @@
+{
+    "bugs": [
+        {
+            "line": "7",
+            "severity": "high",
+            "description": "Missing semicolon at the end of the statement `int a = 10`. This is a syntax error that will prevent the code from compiling.",
+            "fix": "Add a semicolon after `10`: `int a = 10;`"
+        }
+    ]
+}

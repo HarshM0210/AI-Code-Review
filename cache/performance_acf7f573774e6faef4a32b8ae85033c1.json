@@ -1,0 +1,24 @@
+{
+    "performance": [
+        {
+            "issue": "The `generate_with_retry` function makes external API calls to the Gemini model. These calls are inherently slow due to network latency, API server processing time, and model inference duration, making them the primary bottleneck for overall execution speed.",
+            "impact": "high",
+            "optimization": "Implement caching for frequently requested prompts or deterministic outputs to avoid redundant API calls. Explore asynchronous API calls using `asyncio` to allow other tasks to run concurrently while waiting for responses. Optimize prompts to be concise and efficient, potentially reducing model inference time."
+        },
+        {
+            "issue": "The `generate_with_retry` function uses exponential backoff (`time.sleep(2 ** attempt)`) during API errors. While essential for robustness, these delays significantly increase the total execution time when transient API issues or rate limits are encountered, directly impacting perceived performance.",
+            "impact": "high",
+            "optimization": "Implement client-side rate limiting to proactively manage API request volume and avoid hitting server-side limits that trigger backoff. Consider a circuit breaker pattern to temporarily halt requests to a failing API, preventing unnecessary retries and delays during prolonged outages."
+        },
+        {
+            "issue": "The `types.GenerateContentConfig` object is created inside the retry loop within `generate_with_retry`. While the object is small, recreating it on every retry attempt introduces minor, unnecessary overhead, especially if the loop runs multiple times.",
+            "impact": "low",
+            "optimization": "Create the `config` object once before the retry loop. Since its attributes (`temperature`, `response_mime_type`, `system_instruction`) are static or conditionally set once, it doesn't need to be re-instantiated on each retry attempt."
+        },
+        {
+            "issue": "The `parse_json_safely` function uses regular expressions (`re.sub`) for cleaning markdown wrappers. While generally efficient for typical LLM response sizes, if this function is called extremely frequently with very large input strings, the regex operations could contribute to CPU usage.",
+            "impact": "low",
+            "optimization": "For simple prefix/suffix removal, consider using `str.removeprefix()` and `str.removesuffix()` (available in Python 3.9+) as they can sometimes be marginally faster than regex for these specific patterns. For more complex or frequently used regex patterns, pre-compiling them with `re.compile()` outside the function could offer a minor performance boost."
+        }
+    ]
+}

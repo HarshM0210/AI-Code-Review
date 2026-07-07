@@ -1,0 +1,9 @@
+{
+    "performance": [
+        {
+            "issue": "Using `std::endl` which not only inserts a newline but also flushes the output buffer.",
+            "impact": "low",
+            "optimization": "For performance-critical output, especially within loops, it's generally more efficient to use `\\n` instead of `std::endl`. `\\n` only inserts a newline character, while `std::endl` also forces a flush of the output buffer, which can be a relatively expensive operation. In this specific trivial example, the performance impact is negligible, but it's a good practice to be aware of."
+        }
+    ]
+}

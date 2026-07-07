@@ -1,0 +1,16 @@
+{
+    "bugs": [
+        {
+            "line": "32-43",
+            "severity": "medium",
+            "description": "The language auto-detection mechanism defaults to 'Python' if the file extension is not found in the `ext_map`. This can lead to incorrect code reviews if a file with an unrecognized extension (e.g., '.rb' for Ruby, '.go' for Go) is provided without explicitly specifying the language. The `run_pipeline` function would then attempt to review a non-Python file as Python, potentially yielding irrelevant results or errors within the pipeline.",
+            "fix": "Instead of defaulting to 'Python' for unknown extensions, consider one of the following:\n1. Set `language` to `None` and let the `run_pipeline` function handle the unknown language (e.g., by raising an error or performing more advanced detection).\n2. Print a warning to the user that the language could not be auto-detected and prompt them to specify it, or exit with an error.\n3. Add a more comprehensive list of common file extensions to `ext_map`."
+        },
+        {
+            "line": "60-74",
+            "severity": "low",
+            "description": "When printing details from the `results` dictionary (e.g., bug lines, security risks, performance issues), the `.get()` method is used without providing a default value. If a key is missing from the dictionary for a particular item (e.g., a bug entry lacks a 'line' key), `None` will be printed directly into the f-string, resulting in less user-friendly output (e.g., 'Line None', 'None: None').",
+            "fix": "Provide meaningful default values for all `.get()` calls when printing report details. For example, change `b.get('line')` to `b.get('line', 'N/A')`, `s.get('risk')` to `s.get('risk', 'Unknown Risk')`, and `p.get('issue')` to `p.get('issue', 'Unknown Issue')`."
+        }
+    ]
+}

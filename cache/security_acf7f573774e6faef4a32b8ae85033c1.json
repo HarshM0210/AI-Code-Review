@@ -1,0 +1,14 @@
+{
+    "security_issues": [
+        {
+            "risk": "Prompt Injection Vulnerability",
+            "severity": "high",
+            "recommendation": "The `generate_with_retry` function accepts `prompt` and `system_instruction` arguments. If these arguments are constructed using unvalidated or unsanitized user input, an attacker could inject malicious instructions. This could lead to the LLM ignoring its original instructions, revealing sensitive information, generating harmful content, or performing unintended actions. Implement robust input validation and sanitization for any user-provided data that contributes to the prompt or system instruction. Consider using prompt templating with strict variable substitution, input filtering, or employing LLM-specific input moderation APIs/techniques. If `system_instruction` is meant to be static, ensure it's not modifiable by user input."
+        },
+        {
+            "risk": "API Key Exposure Risk",
+            "severity": "critical",
+            "recommendation": "While the API key is loaded from an environment file, there's always a risk of accidental exposure through logging, insecure environment configurations, or being committed to version control. Ensure `.env` files are never committed to version control. Implement strict access controls for environments where the API key is stored. Avoid logging the API key or any part of it. For production environments, consider using more secure credential management systems (e.g., cloud secret managers) instead of `.env` files. Rotate API keys regularly."
+        }
+    ]
+}

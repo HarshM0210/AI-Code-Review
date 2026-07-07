@@ -1,0 +1,16 @@
+{
+    "bugs": [
+        {
+            "line": "30",
+            "severity": "critical",
+            "description": "The specified model name 'gemini-2.5-flash' is not a valid or publicly available model in the Google Gemini API. This will cause an APIError when attempting to generate content, making the `generate_with_retry` function unusable.",
+            "fix": "Change the `MODEL` variable to a valid and available Gemini model, such as 'gemini-1.5-flash', 'gemini-1.5-pro', or 'gemini-1.0-pro', depending on the desired capabilities and cost."
+        },
+        {
+            "line": "80-85",
+            "severity": "medium",
+            "description": "The logic for extracting a JSON object using `text.find('{')` and `text.rfind('}')` is flawed. If the `raw_text` contains non-JSON content or multiple JSON-like structures, this approach can extract an invalid substring (e.g., `{\"key1\": \"value1\"} some text {\"key2\": \"value2\"}`) which will then fail `json.loads`. This prevents the function from correctly parsing valid JSON if it's surrounded by or interspersed with other text, despite the function's goal to 'safely parse JSON' and 'extract first JSON object'.",
+            "fix": "Remove the `start = text.find('{')` and `end = text.rfind('}')` block. After stripping markdown, the `text` variable should ideally contain only the JSON. If it contains extra non-JSON text, `json.loads()` will correctly raise a `JSONDecodeError`, which is already handled. The current extraction logic is an unreliable heuristic that can introduce more parsing failures than it solves, especially given that `response_mime_type='application/json'` is set, implying the model should return pure JSON."
+        }
+    ]
+}
