@@ -7,7 +7,7 @@ A multi-agent code analysis assistant that reviews source code and automatically
 
 ---
 
-## 🌟 Features
+## Features
 
 - **Multi-Agent Coordination**: A sequential execution pipeline coordinates four highly specialized agents:
   - **Bug Detection Agent**: Scans code for logical errors, syntax mishaps, and type mismatches.
