@@ -1,10 +1,10 @@
 # Kaggle AI Agents Capstone Submission Writeup
 
-## 📌 Title & Subtitle
+## Title & Subtitle
 * **Title**: AI Code Review Team: Coordinated Multi-Agent Software Quality & Analysis Assistant
 * **Subtitle**: An intelligent developer productivity assistant that orchestrates specialized AI agents to automate bug detection, security audits, performance profiling, and documentation compilation.
 
-## 🗂️ Track Selection
+## Track Selection
 * **Track**: Concierge Agents (Developer tools and productivity workflow enhancement)
 
 ---
@@ -29,7 +29,7 @@ The system compiles their parallel JSON reviews into a single consolidated, exec
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 The application is built on a **Worker-Coordinator Agent Pattern** to ensure high cohesion, low coupling, and easy extensibility.
 
@@ -79,17 +79,17 @@ The application is built on a **Worker-Coordinator Agent Pattern** to ensure hig
 
 ---
 
-## 🛠️ Technical Implementation & Course Concepts
+## Technical Implementation & Course Concepts
 
 This capstone project implements **four** core concepts taught in the **Kaggle AI Agents: Intensive Vibe Coding** course:
 
 ### 1. Multi-Agent Systems (ADK Pattern)
-Instead of relying on a single monolithic prompt to handle bugs, security, performance, and documentation simultaneously—which leads to prompt dilution, missed checks, and high context rot—the system implements the ADK worker-coordinator pattern. Each agent has its own isolated prompt and JSON output schema. The coordinator acts as the workflow engine, sequencing execution and managing data flow.
+Instead of relying on a single monolithic prompt to handle bugs, security, performance, and documentation simultaneously, which leads to prompt dilution, missed checks, and high context rot—the system implements the ADK worker-coordinator pattern. Each agent has its own isolated prompt and JSON output schema. The coordinator acts as the workflow engine, sequencing execution and managing data flow.
 
 ### 2. Security and Safe Practices
 The codebase incorporates secure software practices:
 * **Secrets Isolation**: API keys are handled using environment variables loaded via `python-dotenv`. A robust `.gitignore` ensures that local `.env` keys, reports, and run caches are never committed to version control.
-* **Dedicated Audit**: A specialized `Security Agent` is dedicated strictly to auditing the submitted code for OWASP top-10 vulnerabilities, insecure defaults, and exposed keys.
+* **Dedicated Audit**: A specialized `Security Agent` is dedicated strictly to auditing the submitted code for OWASP top 10 vulnerabilities, insecure defaults, and exposed keys.
 * **Safe JSON Extraction**: A utility parsing function strips markdown wrappers (` ```json ` blocks) and uses standard JSON loading to guarantee program stability.
 
 ### 3. Agent Skills (CLI Utility)
@@ -100,7 +100,7 @@ The design cleanly separates the frontend view (`app.py` using Streamlit) from t
 
 ---
 
-## 🚀 Verification and Validation
+## Verification and Validation
 To verify the application, we run the tool against its own codebase.
 1. **CLI Execution Test**:
    ```bash
@@ -119,7 +119,7 @@ To verify the application, we run the tool against its own codebase.
 
 ---
 
-## 🔮 Future Work
+## Future Work
 1. **GitHub Actions / Git Hooks**: Create a pre-commit hook that runs `cli.py` locally, preventing buggy or insecure code from being committed. Combine this with a GitHub Action to post code reviews directly as Pull Request comments.
 2. **Exposing an MCP Server**: Implement the Model Context Protocol (MCP) to expose this multi-agent code reviewer as a tool that other agents (such as Antigravity or Cursor agents) can call dynamically inside their workspace.
 3. **Repository-Level Context**: Upgrade the coordinator to inspect full directory structures, building a repository dependency map to perform codebase-wide impact reviews instead of single-file analyses.
