@@ -1,7 +1,7 @@
 # Kaggle AI Agents Capstone Submission Writeup
 
 ## Title & Subtitle
-* **Title**: AI Code Review Team: Coordinated Multi-Agent Software Quality & Analysis Assistant
+* **Title**: AI Code Review
 * **Subtitle**: An intelligent developer productivity assistant that orchestrates specialized AI agents to automate bug detection, security audits, performance profiling, and documentation compilation.
 
 ## Track Selection
