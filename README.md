@@ -1,4 +1,4 @@
-# AI Code Review Team 🚀
+# AI Code Review
 ### Multi-Agent Software Engineering Assistant
 
 ![AI Code Review Team Banner](assets/cover_image.png)
@@ -10,10 +10,10 @@ A multi-agent code analysis assistant that reviews source code and automatically
 ## 🌟 Features
 
 - **Multi-Agent Coordination**: A sequential execution pipeline coordinates four highly specialized agents:
-  - 🐛 **Bug Detection Agent**: Scans code for logical errors, syntax mishaps, and type mismatches.
-  - 🔒 **Security Analysis Agent**: Inspects code for potential vulnerabilities (e.g., injection, weak secrets, improper access).
-  - ⚡ **Performance Agent**: Pinpoints bottlenecks (e.g., redundant loops, high-overhead calls) and suggests optimal alternatives.
-  - 📝 **Documentation Agent**: Generates a summary of the code and suggests inline documentation or structural updates.
+  - **Bug Detection Agent**: Scans code for logical errors, syntax mishaps, and type mismatches.
+  - **Security Analysis Agent**: Inspects code for potential vulnerabilities (e.g., injection, weak secrets, improper access).
+  - **Performance Agent**: Pinpoints bottlenecks (e.g., redundant loops, high-overhead calls) and suggests optimal alternatives.
+  - **Documentation Agent**: Generates a summary of the code and suggests inline documentation or structural updates.
 - **Unified Markdown Reports**: Aggregates individual agent outputs into a cleanly structured, download-ready Markdown review report.
 - **Smart Caching Layer**: Avoids redundant API calls and saves API quota by hashing files to serve cached results for identical reviews.
 - **Double Interface Support**:
@@ -22,7 +22,7 @@ A multi-agent code analysis assistant that reviews source code and automatically
 
 ---
 
-## 🎓 Demonstrated Course Concepts
+## Demonstrated Course Concepts
 
 This project directly demonstrates **four** core concepts from the **Kaggle AI Agents: Intensive Vibe Coding** course:
 
@@ -45,7 +45,7 @@ This project directly demonstrates **four** core concepts from the **Kaggle AI A
 
 ---
 
-## 🛠️ Setup & Installation
+## Setup & Installation
 
 ### 1. Prerequisites
 - Python 3.11+
@@ -77,7 +77,7 @@ GEMINI_API_KEY=your_actual_gemini_api_key_here
 
 ---
 
-## 🚀 Running the Application
+## Running the Application
 
 ### Option A: Interactive Web UI (Streamlit)
 To launch the rich visual dashboard:
@@ -97,7 +97,7 @@ python cli.py path/to/your/code_file.py
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 ```
 ai_code_review/
 ├── assets/                  # Images and visual components
